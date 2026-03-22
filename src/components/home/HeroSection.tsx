@@ -85,8 +85,8 @@ export default function HeroSection() {
             variants={fadeInUp}
             className="text-lg md:text-xl text-foreground/65 max-w-xl leading-relaxed mb-10"
           >
-            政治大學政治學系碩士生，研究領域為
-            <span className="text-foreground font-medium">選舉研究</span>
+            政治大學政治學系碩士生，專注於
+            <span className="text-foreground font-medium">資料分析</span>
             與
             <span className="text-foreground font-medium">民意調查方法</span>
             ，同時從事學術活動視覺設計。
