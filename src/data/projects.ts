@@ -104,7 +104,7 @@ export const researchProjects: ResearchProject[] = [
     title: "住戶的門神、訪員的惡夢：住宅型態與接觸偏誤對民調投票高估的結構性影響",
     titleEn:
       "How Housing Types Lead to Selection Bias in Face-to-Face Surveys",
-    subtitle: "中央研究院 ISSM 期末報告｜陳逸龍、莊旻叡",
+    subtitle: "2025臺灣政治學年會｜國立政治大學｜陳逸龍、莊旻叡",
     category: "research",
     tags: ["Survey Methodology", "Selection Bias", "Election Studies"],
     date: "2025",
