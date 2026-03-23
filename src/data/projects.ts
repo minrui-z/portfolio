@@ -112,9 +112,9 @@ export const researchProjects: ResearchProject[] = [
     featured: true,
     abstract:
       "調查實務上，越來越多社區大樓成為訪員訪問困難的主要因素。本研究探討住宅型態（公寓大廈門禁系統）如何系統性地導致接觸偏誤，透過個體層次確認選樣偏誤與投票行為的內生性關係，再以村里層次驗證大樓比例對民調投票率誤差的結構性影響。使用 TEDS2024 與政府開放資料平台各村里人口統計資料進行分析。",
-    venue: "ISSM 期末報告",
-    venueEn: "ISSM Final Report",
-    institution: "中央研究院社會科學計量方法研習營",
+    venue: "2025臺灣政治學年會",
+    venueEn: "2025 Annual Conference of the Taiwanese Political Science Association",
+    institution: "國立政治大學",
     coAuthors: ["陳逸龍", "莊旻叡"],
     slidesUrl: "/images/academic/housing-bias/slides.pdf",
     methodology: [
