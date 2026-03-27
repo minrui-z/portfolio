@@ -1,4 +1,4 @@
-import type { DesignProject, ResearchProject, Project } from "@/types/project";
+import type { DesignProject, ResearchProject, SoftwareProject, Project } from "@/types/project";
 
 export const designProjects: DesignProject[] = [
   {
@@ -181,7 +181,47 @@ export const researchProjects: ResearchProject[] = [
   },
 ];
 
-export const allProjects: Project[] = [...designProjects, ...researchProjects];
+export const softwareProjects: SoftwareProject[] = [
+  {
+    slug: "scribby",
+    title: "逐字搞定 Scribby",
+    titleEn: "Scribby — macOS Speech-to-Text",
+    subtitle: "原生 macOS 語音轉文字應用程式",
+    category: "software",
+    tags: ["macOS", "Swift", "AI", "Speech-to-Text"],
+    date: "2025",
+    thumbnail: "/images/projects/scribby/logo.png",
+    featured: true,
+    description:
+      "Scribby 是一款原生 macOS 語音轉文字應用程式。所有 AI 模型完全在本機運行，音訊資料從不離開你的電腦，無需帳號、無需訂閱、無雲端上傳。",
+    techStack: ["Swift", "Python", "Core ML", "SwiftWhisper", "whisper.cpp", "pyannote", "MLX", "MossFormer2"],
+    features: [
+      "完全本地運算：所有模型在裝置端執行，音訊資料不上傳至任何伺服器",
+      "資安友善：適合處理訪談、會議、研究錄音等敏感內容",
+      "99 種以上語言：自動偵測語言，無需手動切換",
+      "說話者分離：自動辨識誰在說話，逐字稿按人分段標記",
+      "語音增強：改善低品質或噪音音訊，提升辨識準確度",
+      "即時進度顯示：清楚呈現各處理階段，不用猜測進度",
+    ],
+    techDetails: [
+      "語音辨識引擎：SwiftWhisper + whisper.cpp，透過 Core ML 與 Apple Neural Engine 加速",
+      "說話者分離：整合 pyannote.audio，需提供 HuggingFace Access Token 並申請模型授權",
+      "語音增強：MossFormer2 模型，使用 MLX 框架在 Apple Silicon 執行",
+      "系統需求：macOS 13 Ventura 以上，僅支援 Apple Silicon（M1 以上）",
+      "模型大小：首次下載 Whisper 模型約 1.5–2.9 GB",
+    ],
+    githubUrl: "https://github.com/minrui-z/Scribby",
+    releasesUrl: "https://github.com/minrui-z/Scribby/releases",
+    screenshots: [
+      "/images/projects/scribby/screenshot-2.png",
+      "/images/projects/scribby/screenshot-1.png",
+      "/images/projects/scribby/screenshot-3.png",
+    ],
+    status: "in-progress",
+  },
+];
+
+export const allProjects: Project[] = [...designProjects, ...researchProjects, ...softwareProjects];
 
 export function getProjectBySlug(slug: string): Project | undefined {
   return allProjects.find((p) => p.slug === slug);

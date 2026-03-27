@@ -1,4 +1,4 @@
-export type ProjectCategory = "design" | "research";
+export type ProjectCategory = "design" | "research" | "software";
 
 export interface ProjectBase {
   slug: string;
@@ -35,4 +35,17 @@ export interface ResearchProject extends ProjectBase {
   keyFindings?: string[];
 }
 
-export type Project = DesignProject | ResearchProject;
+export interface SoftwareProject extends ProjectBase {
+  category: "software";
+  description: string;
+  techStack: string[];
+  features: string[];
+  techDetails?: string[];
+  githubUrl?: string;
+  demoUrl?: string;
+  releasesUrl?: string;
+  screenshots?: string[];
+  status: "completed" | "in-progress" | "archived";
+}
+
+export type Project = DesignProject | ResearchProject | SoftwareProject;

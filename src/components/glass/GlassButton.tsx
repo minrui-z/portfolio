@@ -12,6 +12,7 @@ interface GlassButtonProps {
   variant?: "default" | "accent";
   size?: "sm" | "md" | "lg";
   className?: string;
+  external?: boolean;
 }
 
 const sizeClasses = {
@@ -27,6 +28,7 @@ export default function GlassButton({
   variant = "default",
   size = "md",
   className,
+  external = false,
 }: GlassButtonProps) {
   const baseClasses = cn(
     "inline-flex items-center justify-center rounded-xl font-medium transition-colors",
@@ -45,6 +47,15 @@ export default function GlassButton({
   };
 
   if (href) {
+    if (external) {
+      return (
+        <motion.div {...motionProps} className="inline-block">
+          <a href={href} target="_blank" rel="noopener noreferrer" className={baseClasses}>
+            {children}
+          </a>
+        </motion.div>
+      );
+    }
     return (
       <motion.div {...motionProps} className="inline-block">
         <Link href={href} className={baseClasses}>

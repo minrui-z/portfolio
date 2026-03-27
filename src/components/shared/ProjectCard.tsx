@@ -16,7 +16,18 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
   const href =
     project.category === "design"
       ? `/design/${project.slug}`
-      : `/research/${project.slug}`;
+      : project.category === "research"
+      ? `/research/${project.slug}`
+      : `/projects/${project.slug}`;
+
+  const categoryLabel =
+    project.category === "design"
+      ? "Design"
+      : project.category === "research"
+      ? "Research"
+      : "Project";
+
+  const isSoftware = project.category === "software";
 
   return (
     <motion.article
@@ -26,47 +37,58 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
       viewport={{ once: true, margin: "-50px" }}
       transition={{ delay: index * 0.08 }}
       whileHover={{ y: -4 }}
-      className="group"
+      className="group h-full"
     >
-      <Link href={href} className="block">
-        <div className="bg-white/50 border border-black/6 rounded-2xl overflow-hidden shadow-sm shadow-black/4 transition-colors hover:bg-white/65">
+      <Link href={href} className="block h-full">
+        <div className="h-full flex flex-col bg-white/50 border border-black/6 rounded-2xl overflow-hidden shadow-sm shadow-black/4 transition-colors hover:bg-white/65">
           {/* Thumbnail — design only */}
-          {project.category === "design" && (
-            <div className="relative aspect-[16/10] overflow-hidden bg-surface-alt/30">
-              <div className="absolute inset-0 flex items-center justify-center text-foreground/20 text-sm">
-                Design
-              </div>
-              {project.thumbnail && (
-                <Image
-                  src={project.thumbnail}
-                  alt={project.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-              )}
+          {!isSoftware && project.thumbnail && (
+            <div className="relative aspect-[16/10] overflow-hidden bg-surface-alt/30 shrink-0">
+              <Image
+                src={project.thumbnail}
+                alt={project.title}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
           )}
 
           {/* Content */}
-          <div className="p-5">
+          <div className="flex-1 flex flex-col p-5">
             <div className="flex items-center gap-2 mb-2">
               <span className="text-xs uppercase tracking-wider text-accent-warm font-medium">
-                {project.category === "design" ? "Design" : "Research"}
+                {categoryLabel}
               </span>
               <span className="text-foreground/30">&middot;</span>
               <span className="text-xs text-foreground/50">{project.date}</span>
             </div>
-            <h3 className="text-lg font-medium leading-snug mb-2 line-clamp-2">
-              {project.title}
-            </h3>
+
+            {/* Title row — icon on right for software */}
+            <div className="flex items-start justify-between gap-3 mb-2">
+              <h3 className="text-lg font-medium leading-snug line-clamp-2">
+                {project.title}
+              </h3>
+              {isSoftware && project.thumbnail && (
+                <div className="shrink-0 w-14 h-14 rounded-2xl overflow-hidden border border-black/8 shadow-sm">
+                  <Image
+                    src={project.thumbnail}
+                    alt={project.title}
+                    width={56}
+                    height={56}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              )}
+            </div>
+
             {project.subtitle && (
               <p className="text-sm text-foreground/60 mb-3">
                 {project.subtitle}
               </p>
             )}
-            <div className="flex flex-wrap gap-1.5">
+            <div className="mt-auto flex flex-wrap gap-1.5">
               {project.tags.slice(0, 3).map((tag) => (
                 <Tag key={tag} label={tag} />
               ))}
